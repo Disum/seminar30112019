@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "array.h"
+#include "../array/array.h"
 #include "merge_sort.h"
 
 int main(int argc, const char *argv[])
