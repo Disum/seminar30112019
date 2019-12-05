@@ -25,6 +25,14 @@ int main(int argc, const char *argv[])
 	// Память выделена
 
 	result_read = read_array(argv[2], a, n);
+	if( result_read>0 )
+	{
+		fprintf(stderr, "Can not allocate memory!\n");
+		for( i = 0; i<result_read; i++ )
+			free(a[i]);
+		free(a);
+		return 2;
+	}
 	if( result_read<0 )
 	{
 		switch( result_read )
@@ -35,13 +43,9 @@ int main(int argc, const char *argv[])
 		case -1:
 			fprintf(stderr, "Can not open file %s\n", argv[2]);
 			break;
-		case -3:
-			fprintf(stderr, "Can not allocate memory!\n");
-			break;
 		default:
 			fprintf(stderr, "Unknown error %d in file %s\n", result_read, argv[2]);
 		}
-
 		for( i = 0; i<n; i++ )
 			free(a[i]);
 		free(a);
