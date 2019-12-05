@@ -7,7 +7,7 @@
 
 int main(int argc, const char *argv[])
 {
-	int i, n, result_read;
+	int n, result_read;
 	char **a;
 	clock_t time_begin;
 
@@ -28,9 +28,7 @@ int main(int argc, const char *argv[])
 	if( result_read>0 )
 	{
 		fprintf(stderr, "Can not allocate memory!\n");
-		for( i = 0; i<result_read; i++ )
-			free(a[i]);
-		free(a);
+		free_array(a, result_read);
 		return 2;
 	}
 	if( result_read<0 )
@@ -46,9 +44,7 @@ int main(int argc, const char *argv[])
 		default:
 			fprintf(stderr, "Unknown error %d in file %s\n", result_read, argv[2]);
 		}
-		for( i = 0; i<n; i++ )
-			free(a[i]);
-		free(a);
+		free_array(a, n);
 		return 3;
 	}
 	// Массив считан
@@ -61,8 +57,6 @@ int main(int argc, const char *argv[])
 	printf("Time: %.2f seconds\nArray a[]:\n", (float)(clock() - time_begin)/CLOCKS_PER_SEC);
 	print_array(a, n);
 
-	for( i = 0; i<n; i++ )
-		free( a[i] );
-	free(a);
+	free_array(a, n);
 	return 0;
 }

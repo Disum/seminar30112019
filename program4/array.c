@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "array.h"
-#define DEFAULT_LENGTH 1000
 
 /* Предполагается, что n>0 и по указателю array выделена память для n элементов.
  * Ф-ия возвращает:
@@ -36,8 +35,7 @@ int read_array(const char *name, char **array, int n)
 			}
 		}
 
-		array[i] = (char *)malloc((j + 1)*sizeof(char));
-		if( !array[i] )
+		if( !(array[i] = (char *)malloc((j + 1)*sizeof(char))) )
 		{
 			fclose(input);
 			return i;
@@ -64,4 +62,16 @@ void print_array(char **array, int n)
 
 	for( i = 0; i<n; i++ )
 		printf("Array[%d]=%.20s\n", i, array[i]);
+}
+
+/* Предполагается, что n>0, по указателю array выделена память для n элементов, и по указателям array[0..(n - 1)] выделена память.
+ * */
+void free_array(char **array, int n)
+{
+	int i;
+
+	for( i = 0; i<n; i++ )
+		free(array[i]);
+
+	free(array);
 }
