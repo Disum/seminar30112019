@@ -79,5 +79,7 @@ int main(int argc, const char *argv[])
 	free_array(a, n);
 	if( n==1 )// Ни одного слияния в merge_sort не было произведено.
 		free_array(b, n);
+	else
+		free(b);
 	return 0;
 }
