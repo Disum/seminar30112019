@@ -7,7 +7,7 @@
 
 int main(int argc, const char *argv[])
 {
-	int i, n, result_read;
+	int n, result_read;
 	char **a, **b;
 	clock_t time_begin;
 
@@ -28,16 +28,6 @@ int main(int argc, const char *argv[])
 		free(a);
 		return 2;
 	}
-	for( i = 0; i<n; i++ )
-	{
-		if( !(b[i] = (char *)malloc(DEFAULT_LENGTH*sizeof(char))) )
-		{
-			fprintf(stderr, "Can not allocate memory!\n");
-			free(a);
-			free_array(b, i);
-			return 2;
-		}
-	}
 	// Память выделена
 
 	result_read = read_array(argv[2], a, n);
@@ -45,7 +35,7 @@ int main(int argc, const char *argv[])
 	{
 		fprintf(stderr, "Can not allocate memory!\n");
 		free_array(a, result_read);
-		free_array(b, n);
+		free(b);
 		return 2;
 	}
 	if( result_read<0 )
@@ -63,7 +53,7 @@ int main(int argc, const char *argv[])
 		}
 
 		free_array(a, n);
-		free_array(b, n);
+		free(b);
 		return 3;
 	}
 	// Массив считан
@@ -77,9 +67,6 @@ int main(int argc, const char *argv[])
 	print_array(a, n);
 
 	free_array(a, n);
-	if( n==1 )// Ни одного слияния в merge_sort не было произведено.
-		free_array(b, n);
-	else
-		free(b);
+	free(b);
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "array.h"
+#define DEFAULT_LENGTH 1000
 
 /* Предполагается, что n>0 и по указателю array выделена память для n элементов.
  * Ф-ия возвращает:
