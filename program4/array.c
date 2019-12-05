@@ -36,7 +36,7 @@ int read_array(const char *name, char **array, int n)
 			}
 		}
 
-		array[i] = (char *)malloc(j + 1);
+		array[i] = (char *)malloc((j + 1)*sizeof(char));
 		if( !array[i] )
 		{
 			fclose(input);
