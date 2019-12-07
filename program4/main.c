@@ -27,7 +27,7 @@ int main(int argc, const char *argv[])
 	result_read = read_array(argv[2], a, n);
 	if( result_read>0 )
 	{
-		fprintf(stderr, "Can not read element from %s or allocate memory for them\n", argv[2]);
+		fprintf(stderr, "Can not allocate memory or read element from %s\n", argv[2]);
 		free_array(a, result_read - 1);
 		return 2;
 	}
@@ -51,7 +51,7 @@ int main(int argc, const char *argv[])
 
 	time_begin = clock();
 	bubble_sort(a, n, &strcmp);
-	printf("Time: %.2f seconds\nArray a[]:\n", (float)(clock() - time_begin)/CLOCKS_PER_SEC);
+	printf("Time: %.2lf seconds\nArray a[]:\n", (double)(clock() - time_begin)/CLOCKS_PER_SEC);
 	print_array(a, n);
 
 	free_array(a, n);

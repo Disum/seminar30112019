@@ -2,8 +2,7 @@
 void merge(char **a, char **b, char **c, int n, int m, int (*p)(const char *, const char *));
 void swap(char ***a, char ***b);
 
-/* Предполагается, что n>0, по указателю a расположен массив из n элементов, по указателю b выделена память для n элеметов,
- * по указателям b[0..(n - 1)] выделена память для DEFAULT_LENGTH элементов.
+/* Предполагается, что n>0, по указателю a расположен массив из n элементов, по указателю b выделена память для n элеметов.
  * Сортировка Неймана.
  * */
 void merge_sort(char **a, char **b, int n, int (*p)(const char *, const char *))

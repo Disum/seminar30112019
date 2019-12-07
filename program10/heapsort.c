@@ -44,7 +44,7 @@ void heapsort(char **a, int n, int (*p)(const char *, const char *))
 		// Поиск позиции, на которую должен перейти a[0] в массиве a длины k
 		width = 1;// Число элементов на уровне дерева, на который будет переставлен a[0]
 		for( position = 0; position<(k - 1); child_1 = 2*position + 1, child_2 = 2*position + 2)
-		{
+		{// Много сравнений?
 			if( child_2>k )
 			{
 				break;
