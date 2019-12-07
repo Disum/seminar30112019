@@ -27,7 +27,7 @@ int main(int argc, const char *argv[])
 	result_read = read_array(argv[2], a, n);
 	if( result_read>0 )
 	{
-		fprintf(stderr, "Can not allocate memory!\n");
+		fprintf(stderr, "Can not read element from %s or allocate memory for them\n", argv[2]);
 		free_array(a, result_read - 1);
 		return 2;
 	}
@@ -35,9 +35,6 @@ int main(int argc, const char *argv[])
 	{
 		switch( result_read )
 		{
-		case -2:
-			fprintf(stderr, "Can not read element from %s\n", argv[2]);
-			break;
 		case -1:
 			fprintf(stderr, "Can not open file %s\n", argv[2]);
 			break;
