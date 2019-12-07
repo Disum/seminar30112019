@@ -8,7 +8,7 @@
  * -2, если не удалось прочитать элемент;
  * -1, если не удалось открыть файл;
  * 0, в случае успешного завершения;
- * k>0, если удалось выделить память и считать k строк, (k + 1)'ую удалось считать, но выделить память для нее не удалось.
+ * (i + 1)>0, если удалось выделить память и считать (i - 1) строк, i'ую удалось считать, но выделить память для нее не удалось.
  * */
 int read_array(const char *name, char **array, int n)
 {
@@ -39,7 +39,7 @@ int read_array(const char *name, char **array, int n)
 		if( !(array[i] = (char *)malloc((j + 1)*sizeof(char))) )
 		{
 			fclose(input);
-			return i;
+			return i + 1;
 		}
 
 		for( k = 0; k<(j + 1); k++ )
@@ -65,8 +65,6 @@ void print_array(char **array, int n)
 		printf("Array[%d]=%.20s\n", i, array[i]);
 }
 
-/* Предполагается, что n>0, по указателю array выделена память для n элементов, и по указателям array[0..(n - 1)] выделена память.
- * */
 void free_array(char **array, int n)
 {
 	int i;

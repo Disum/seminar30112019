@@ -28,7 +28,7 @@ int main(int argc, const char *argv[])
 	if( result_read>0 )
 	{
 		fprintf(stderr, "Can not allocate memory!\n");
-		free_array(a, result_read);
+		free_array(a, result_read - 1);
 		return 2;
 	}
 	if( result_read<0 )
